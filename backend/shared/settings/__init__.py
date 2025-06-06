@@ -1,1 +1,1 @@
-from .config import db_config
+from .config import api_prefix_config, db_config

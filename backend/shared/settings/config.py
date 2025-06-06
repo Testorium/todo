@@ -29,3 +29,18 @@ class DatabaseConfig:
 
 
 db_config = DatabaseConfig()
+
+
+# --- API Prefix Configuration ---
+class APIV1PrefixConfig:
+    prefix: str = "/v1"
+    auth: str = "/auth"
+    users: str = "/users"
+
+
+class APIPrefixConfig:
+    prefix: str = "/api"
+    v1: APIV1PrefixConfig = APIV1PrefixConfig()
+
+
+api_prefix_config = APIPrefixConfig()
