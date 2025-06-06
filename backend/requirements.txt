@@ -5,3 +5,4 @@ uvicorn
 gunicorn
 sqlalchemy
 python-dotenv
+pwdlib[argon2]
