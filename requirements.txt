@@ -4,3 +4,4 @@ pyhumps
 uvicorn
 gunicorn
 sqlalchemy
+python-dotenv
