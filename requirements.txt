@@ -1,0 +1,6 @@
+fastapi
+aiosqlite
+pyhumps
+uvicorn
+gunicorn
+sqlalchemy
