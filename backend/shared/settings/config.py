@@ -44,3 +44,25 @@ class APIPrefixConfig:
 
 
 api_prefix_config = APIPrefixConfig()
+
+
+# --- JWT Configuration ---
+class JWTConfig:
+    algorithm: str = os.getenv("JWT_ALGORITHM")
+    secret_key: str = os.getenv("JWT_SECRET_KEY")
+    token_time: int = int(os.getenv("JWT_TOKEN_TIME"))
+
+
+jwt_config = JWTConfig()
+
+
+# --- Cookie Configuration ---
+class CookieConfig:
+    key: str = "authtoken"
+    max_age: int = 900
+    samesite: str = "none"
+    httponly: bool = True
+    secure: bool = True
+
+
+cookie_config = CookieConfig()
