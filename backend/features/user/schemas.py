@@ -1,6 +1,11 @@
 from shared.schemas import BaseSchema
 
 
+class UserCredentials(BaseSchema):
+    username: str
+    password: str
+
+
 class UserRead(BaseSchema):
     id: int
     username: str
