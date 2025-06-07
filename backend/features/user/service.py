@@ -5,21 +5,37 @@ from sqlalchemy import select
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 
-from shared.utils.hashing import hash_password
-
-from backend.shared.exceptions.database import (
+from shared.exceptions import (
     AlreadyExistsError,
     DatabaseError,
+    IncorrectPassword,
     NotFoundError,
 )
+from shared.utils.hashing import hash_password, verify_password
+from shared.utils.token import generate_token
 
 from .model import User
-from .schemas import UserCreate, UserUpdate
+from .schemas import UserCreate, UserCredentials, UserUpdate
 
 
 class UserService:
     def __init__(self, session: "AsyncSession"):
         self._session = session
+
+    async def authenticate_user(self, credentials: UserCredentials) -> str:
+        user = await self.get_user_by_username(username=credentials.username)
+
+        if not user:
+            raise NotFoundError("User not found.")
+
+        if not verify_password(
+            password=credentials.password,
+            hashed_password=user.hashed_password,
+        ):
+            raise IncorrectPassword("Incorrect user password.")
+
+        token = generate_token(user.id)
+        return token
 
     async def create_user(self, user_data: UserCreate) -> User:
         existing_user = await self.get_user_by_username(user_data.username)
@@ -77,7 +93,7 @@ class UserService:
         return user
 
     async def update_user_by_id(self, new_data: UserUpdate, user_id: int) -> User:
-        user = self.get_user_by_id(user_id)
+        user = await self.get_user_by_id(user_id)
 
         values = new_data.model_dump(exclude_none=True, exclude_unset=True)
 
