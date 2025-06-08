@@ -83,7 +83,7 @@ gunicorn_config = GunicornConfig()
 
 # --- CORS Configuration ---
 class CORSConfig:
-    origins: List[str] = ["http://localhost:3080"]
+    origins: List[str] = ["http://localhost:3000"]
     allow_credentials: bool = True
     allow_methods: List[str] = ["*"]
     allow_headers: List[str] = ["*"]
