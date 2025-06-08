@@ -18,7 +18,7 @@ const UserProfile = ({ children }: { children: React.ReactNode }) => {
       try {
         const { data } = await apiClient.get("/users/me");
         setUser(data);
-      } catch (error) {
+      } catch {
         router.replace("/login");
       } finally {
         setLoading(false);
