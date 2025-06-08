@@ -9,10 +9,13 @@ import {
   Paper,
   Divider,
   Stack,
+  Group,
+  Anchor,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useRouter } from "next/navigation";
 import { apiClient } from "@/shared/api/api-client";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [loading, setLoading] = useState(false);
@@ -73,6 +76,15 @@ export default function LoginForm() {
             <Button type="submit" fullWidth loading={loading}>
               Sign in
             </Button>
+
+            <Group justify="center">
+              <Text size="sm" c="dimmed">
+                Don't have an account?{" "}
+                <Anchor component={Link} href="/signup" size="sm">
+                  Sign up
+                </Anchor>
+              </Text>
+            </Group>
           </Stack>
         </form>
       </Paper>
