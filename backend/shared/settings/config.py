@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 from dotenv import load_dotenv
 
@@ -78,3 +79,14 @@ class GunicornConfig:
 
 
 gunicorn_config = GunicornConfig()
+
+
+# --- CORS Configuration ---
+class CORSConfig:
+    origins: List[str] = ["http://localhost:3080"]
+    allow_credentials: bool = True
+    allow_methods: List[str] = ["*"]
+    allow_headers: List[str] = ["*"]
+
+
+cors_config = CORSConfig()
