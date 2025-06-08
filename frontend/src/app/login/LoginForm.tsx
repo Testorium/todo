@@ -28,9 +28,9 @@ export default function LoginForm() {
   const handleSubmit = async (values: typeof form.values) => {
     setLoading(true);
     try {
-      const response = await apiClient.post("/auth/login", values);
+      await apiClient.post("/auth/login", values);
       router.push("/todo");
-    } catch (error: any) {
+    } catch (error: any | unknown) {
       console.error("Login error:", error.response?.data || error.message);
     } finally {
       setLoading(false);
