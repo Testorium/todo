@@ -3,8 +3,10 @@
 import { apiClient } from "@/shared/api/api-client";
 import { Button, Paper } from "@mantine/core";
 import { useRouter } from "next/navigation";
+import useUser from "../hooks/use-user.hook";
 
 export default function LogoutButton() {
+  const { user } = useUser();
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -24,7 +26,7 @@ export default function LogoutButton() {
         color="indigo"
         onClick={handleLogout}
       >
-        Logout
+        Logout, {user?.firstName}
       </Button>
     </Paper>
   );
