@@ -37,6 +37,7 @@ class APIV1PrefixConfig:
     prefix: str = "/v1"
     auth: str = "/auth"
     users: str = "/users"
+    todos: str = "/todos"
 
 
 class APIPrefixConfig:
