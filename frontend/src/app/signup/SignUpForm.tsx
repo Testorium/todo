@@ -95,7 +95,7 @@ export default function SignUpForm() {
             <Group justify="center">
               <Text size="sm" c="dimmed">
                 Don't have an account?{" "}
-                <Anchor component={Link} href="/signup" size="sm">
+                <Anchor component={Link} href="/login" size="sm">
                   Sign up
                 </Anchor>
               </Text>
