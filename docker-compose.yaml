@@ -1,4 +1,28 @@
 services:
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+
+  frontend:
+    build:
+      dockerfile: ./docker/frontend/Dockerfile
+      context: ./
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+
   backend:
     build:
       dockerfile: ./docker/backend/Dockerfile
@@ -8,8 +32,8 @@ services:
     env_file:
       - path: ./backend/.env
         required: true
-    # volumes:
-    #   - ./backend:/app
+    volumes:
+      - ./backend:/app
 
     # develop:
     #   watch:
