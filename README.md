@@ -10,7 +10,7 @@ git clone https://github.com/Testorium/todo.git
 cd todo
 ```
 
-Бэк и фронт настроены через `nginx` прокси, так что просто запускаем `docker compose`
+Просто запускаем `docker compose`
 
 ```
 docker compose up -d
